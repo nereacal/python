@@ -20,33 +20,38 @@ def read():
     return(words)
 
 
+def lineas(word):
+    cantidad_letras = len(word)
+    line = ['_' for i in word]
+    lin = ''.join(line)
+    return lin
+
+
 def juego(word, lines):
-    w = list()
+    w = list(word)
     l = list(lines)
-    user = ''
 
-    while w != word:
-        user = input('Ingresa una letra: ')
-        assert len(user) == 1, 'Tienes que ingresar una letra!'
-
-        for i in range(len(word)):
-            if user == word[i]:
-                w.append(i) = word[i]
-        print(l)
-    
-    print('Has ganado !')
-
-        
+    letra_candidata = ''
+    while w != l:
+        letra_candidata = input("Ingresa una letra: ")
+        assert len(letra_candidata) == 1, 'Tienes que meter solo una letra a la vez'
+        clear = lambda: os.system('cls')
+        clear()
+        for i in range(0, len(w)):
+            if w[i] == letra_candidata:
+                l[i] = w[i]
+        print(' '.join(l).upper())
+        print('\n')
+    print('De puta madre! Has ganado. Palabra: ' + word.upper())
 
 
 def run():
     words = read()
     word = random.choice(words)
     print('Adivina la palabra!\n')
-    word = list(word)
-    lines = '_' * len(word)
+    lines = lineas(word)
     print(' '.join(lines))
-    print(word)
+    print('\n')
     juego(word, lines)
 
 
