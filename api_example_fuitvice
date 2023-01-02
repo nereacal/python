@@ -1,0 +1,18 @@
+import requests
+import json
+import pandas as pd
+
+data = requests.get("https://www.fruityvice.com/api/fruit/all")
+results = json.loads(data.text)
+pd.DataFrame(results)
+df2 = pd.json_normalize(results)
+
+# saber la familia y el genus del cherry
+cherry = df2.loc[df2["name"] == 'Cherry']
+print(cherry.iloc[0]['genus'])
+print(cherry.iloc[0]['family'])
+
+
+# saber las calorias de la banana
+banana = df2.loc[df2["name"] == 'Banana']
+print(banana.iloc[0]['nutritions.calories'])
